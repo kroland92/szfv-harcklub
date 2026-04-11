@@ -1,0 +1,202 @@
+:root {
+    --brand-red: #e63946;
+    --dark-base: #0a0a0a;
+    --card-bg: #1a1a1a;
+    --text-light: #f1f1f1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--dark-base);
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* Fejléc */
+.header {
+    background-color: #000;
+    padding: 1.5rem;
+    text-align: center;
+    border-bottom: 3px solid var(--brand-red);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: white;
+}
+
+/* Hero */
+.hero {
+    height: 90vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), 
+                url('https://images.unsplash.com/photo-1552072092-7f9b8d63efcb?q=80&w=1000&auto=format&fit=crop') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.promo-badge {
+    background-color: var(--brand-red);
+    color: white;
+    padding: 8px 15px;
+    display: inline-block;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    animation: pulse 2s infinite; /* Egy kis pulzálás, hogy vonzza a szemet */
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: var(--brand-red);
+}
+
+.coach-name {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.schedule-highlight {
+    background: rgba(230, 57, 70, 0.2);
+    border: 1px solid var(--brand-red);
+    padding: 20px;
+    display: inline-block;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.schedule-highlight span {
+    font-size: 1.8rem;
+    font-weight: bold;
+    display: block;
+    margin-top: 5px;
+}
+
+/* Edzés kártyák */
+.training-structure {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.training-structure h2 {
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    color: var(--brand-red);
+}
+
+.structure-grid {
+    display: grid;
+    gap: 20px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.card .icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    margin-bottom: 10px;
+    color: white;
+}
+
+/* Kapcsolat */
+.contact {
+    background-color: #000;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.info-box {
+    max-width: 500px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+}
+
+.btn-fb {
+    display: inline-block;
+    margin-top: 25px;
+    background-color: #1877F2;
+    color: white;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.footer {
+    padding: 30px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #555;
+}
+
+/* =========================================
+   Görgetési Animációk (JS-hez)
+   ========================================= */
+.hidden {
+    opacity: 0;
+    transform: translateY(50px); /* 50 pixelről indul lefelé */
+    transition: all 0.8s ease-out;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Késleltetés a kártyáknak, hogy egymás után ússzanak be */
+.card:nth-child(2) { transition-delay: 0.1s; }
+.card:nth-child(3) { transition-delay: 0.2s; }
+.card:nth-child(4) { transition-delay: 0.3s; }
+
+/* Desktop nézet (Tablettől felfelé) */
+@media (min-width: 768px) {
+    .structure-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    
+    .hero h1 {
+        font-size: 4.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .structure-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
