@@ -5,17 +5,23 @@
     --text-light: #f1f1f1;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+html, body {
+    max-width: 100%;
+    overflow-x: hidden; /* Letiltja a vízszintes görgetést */
 }
 
 body {
     background-color: var(--dark-base);
     color: var(--text-light);
     line-height: 1.6;
+    position: relative;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .header {
@@ -42,22 +48,42 @@ body {
 }
 
 .hero {
-    height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), 
-                url('https://images.unsplash.com/photo-1552072092-7f9b8d63efcb?q=80&w=1000&auto=format&fit=crop') center/cover;
+    min-height: 100vh; /* Ez engedi, hogy a doboz megnyúljon lefelé! */
+    height: auto;      /* Felülírja a fix magasságot */
+    width: 100%;
+
+    /* A háttérkép atombiztos beállítása: */
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1552072092-7f9b8d63efcb?q=80&w=1000&auto=format&fit=crop');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     text-align: center;
-    padding-top: 3rem;
-    margin-bottom: -5rem;
+
+    padding-top: 15rem; /* Csinálunk egy nagy űrt a logónak, hogy ne tolja le a szöveget */
+    padding-bottom: 4rem; /* Kényelmes tér a telefon gomb alatt, hogy a kép tovább tartson */
+    margin-bottom: 0;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    padding: 0 15px;
+    width: 100%;
+    z-index: 2; /* Biztosítja, hogy minden elem a háttér fölött maradjon */
 }
 
 .hero h1 {
-    font-size: 4rem;
+    font-size: 2.8rem;
     text-transform: uppercase;
     color: var(--brand-red);
-    margin-bottom: 0;
+    margin-bottom: 10px;
     line-height: 1;
     text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
 }
@@ -71,11 +97,14 @@ body {
     font-weight: 300;
 }
 
-.hero-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 800px;
+.welcome-text {
+    font-size: 1.2rem !important;
+    margin-bottom: 10px;
+}
+
+.coach-name {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
 }
 
 .promo-badge {
@@ -96,18 +125,6 @@ body {
     100% { transform: scale(1); }
 }
 
-.hero h1 {
-    font-size: 2.8rem;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-    color: var(--brand-red);
-}
-
-.coach-name {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-}
-
 .schedule-highlight {
     background: rgba(230, 57, 70, 0.2);
     border: 1px solid var(--brand-red);
@@ -125,15 +142,78 @@ body {
     margin-top: 5px;
 }
 
-/* Edzés kártyák */
-.training-structure {
-    margin-top: -10rem;
-    padding: 60px 20px;
+/* =========================================
+   ÚJ ELEMEK: Telefon gomb és SEO Szekció
+   ========================================= */
+
+.btn-phone {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 30px;
+    background: transparent;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 2px solid var(--brand-red);
+    border-radius: 50px;
+    width: 100%;
     text-align: center;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(211, 47, 47, 0.2);
+}
+
+.btn-phone:hover {
+    background: var(--brand-red);
+    box-shadow: 0 0 25px rgba(211, 47, 47, 0.6);
+    transform: translateY(-2px);
+}
+
+.why-choose-us {
+    padding: 20px 20px; /* JAVÍTVA: Egységes távolság */
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    background-color: var(--dark-base); /* JAVÍTVA: Háttérszín hozzáadva */
+}
+
+.why-choose-us h2 {
+    margin-bottom: 40px; /* JAVÍTVA: Egységes címsor alatti távolság */
+    text-transform: uppercase;
+    color: var(--brand-red);
+}
+
+.seo-text-box {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.seo-text-box p {
+    margin-bottom: 15px;
+}
+
+.seo-text-box p:last-child {
+    margin-bottom: 0;
+}
+
+/* =========================================
+   EDZÉS KÁRTYÁK
+   ========================================= */
+
+.training-structure {
+    padding: 20px 20px; /* JAVÍTVA: Egységes távolság */
+    text-align: center;
+    background-color: var(--dark-base); /* JAVÍTVA: Háttérszín hozzáadva */
 }
 
 .training-structure h2 {
-    margin-bottom: 40px;
+    margin-bottom: 40px; /* JAVÍTVA: Egységes címsor alatti távolság */
     text-transform: uppercase;
     color: var(--brand-red);
 }
@@ -160,24 +240,49 @@ body {
     color: white;
 }
 
-/* Kapcsolat */
+/* =========================================
+   KAPCSOLAT
+   ========================================= */
+
 .contact {
     background-color: #000;
-    padding: 60px 20px;
+    padding: 20px 20px;
     text-align: center;
+}
+
+.contact h2 {
+    color: var(--brand-red);
+    text-transform: uppercase;
+    margin-bottom: 40px;
 }
 
 .info-box {
     max-width: 500px;
-    margin: 0 auto;
+    margin: 0 auto 30px;
     background: var(--card-bg);
     padding: 30px;
     border-radius: 12px;
 }
 
+.info-box p {
+    margin-bottom: 15px;
+}
+
+.phone-link {
+    color: var(--brand-red);
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.phone-link:hover {
+    color: white;
+}
+
 .btn-fb {
     display: inline-block;
-    margin-top: 25px;
+    margin-top: 15px;
     background-color: #1877F2;
     color: white;
     padding: 12px 30px;
@@ -185,6 +290,18 @@ body {
     border-radius: 5px;
     font-weight: bold;
     text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+.btn-fb:hover {
+    background-color: #166fe5;
+}
+
+.map-container {
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
 }
 
 .footer {
@@ -192,14 +309,15 @@ body {
     text-align: center;
     font-size: 0.8rem;
     color: #555;
+    background-color: #000;
 }
 
 /* =========================================
-   Görgetési Animációk (JS-hez)
+   GÖRGETÉSI ANIMÁCIÓK (JS-hez)
    ========================================= */
 .hidden {
     opacity: 0;
-    transform: translateY(50px); /* 50 pixelről indul lefelé */
+    transform: translateY(50px);
     transition: all 0.8s ease-out;
 }
 
@@ -208,25 +326,26 @@ body {
     transform: translateY(0);
 }
 
-.welcome-text {
-   font-size: 1.2rem !important
-}
-
-/* Késleltetés a kártyáknak, hogy egymás után ússzanak be */
 .card:nth-child(2) { transition-delay: 0.1s; }
 .card:nth-child(3) { transition-delay: 0.2s; }
 .card:nth-child(4) { transition-delay: 0.3s; }
 
-/* Desktop nézet (Tablettől felfelé) */
+/* =========================================
+   ASZTALI NÉZET (Tablettől felfelé)
+   ========================================= */
 @media (min-width: 768px) {
     .structure-grid {
         grid-template-columns: repeat(2, 1fr);
         max-width: 1000px;
         margin: 0 auto;
     }
-    
+
     .hero h1 {
         font-size: 4.5rem;
+    }
+
+    .btn-phone {
+        width: auto;
     }
 }
 
