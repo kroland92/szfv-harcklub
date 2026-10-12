@@ -354,3 +354,94 @@ body {
         grid-template-columns: repeat(4, 1fr);
     }
 }
+
+/* =========================================
+   HEZITÁLÓKNAK (JOIN NOW) SZEKCIÓ
+   ========================================= */
+.join-now {
+    padding: 60px 20px;
+    background-color: var(--dark-base);
+}
+
+.join-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.join-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    min-height: 250px;
+}
+
+.join-text {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.join-text h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.join-text .highlight {
+    color: var(--brand-red);
+    display: block;
+}
+
+.join-text p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.btn-primary {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 15px 30px;
+    background-color: var(--brand-red);
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 50px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(211, 47, 47, 0.4);
+    align-self: flex-start;
+}
+
+.btn-primary:hover {
+    background-color: #b71c1c;
+    box-shadow: 0 0 25px rgba(211, 47, 47, 0.7);
+    transform: translateY(-2px);
+}
+
+/* Asztali nézet a szöveg/kép egymás mellé rendezéséhez */
+@media (min-width: 768px) {
+    .join-container {
+        flex-direction: row;
+    }
+    .join-image {
+        flex: 1;
+    }
+    .join-text {
+        flex: 1;
+        padding: 40px;
+    }
+    .btn-primary {
+        margin-top: auto; /* Alulra tolja a gombot, ha a szöveg rövidebb */
+    }
+}
